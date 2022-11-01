@@ -45,4 +45,3 @@ select max(salario), min(salario),max(salario)- min(salario) as 'Diferencia de s
 -- Hallar el salario promedio por departamento
 SELECT id_depto, ROUND( AVG (salario), 0 ) as  ' Salario promedio '  FROM empleado GROUP BY id_depto;
 -- Hallar los departamentos que tiene mas de tres empleados. Mostrar el numero de empleados de esos departamentos
-
