@@ -44,4 +44,19 @@ select nombre from empleado order by nombre desc limit 1;
 select max(salario), min(salario),max(salario)- min(salario) as 'Diferencia de sueldo'from empleado;
 -- Hallar el salario promedio por departamento
 SELECT id_depto, ROUND( AVG (salario), 0 ) as  ' Salario promedio '  FROM empleado GROUP BY id_depto;
+-- Consultas con Having
 -- Hallar los departamentos que tiene mas de tres empleados. Mostrar el numero de empleados de esos departamentos
+SELECT COUNT(id_depto),nombre_depto from departamento group by nombre_depto HAVING COUNT(id_depto) > 3;
+-- Mostrar el código y nombre de cada jefe, junto al número de empleados que dirige.Solo los que tengan más de dos empleados (2 incluido)
+SELECT *, COUNT(*) as 'Cantidad'FROM empleado GROUP BY id_depto HAVING Cantidad >= 2 AND cargo LIKE 'Jefe%';
+-- Hallar los departamentos que no tienen empleados
+SELECT COUNT(id_depto),nombre_depto from departamento group by nombre_depto HAVING COUNT(id_depto) = 0;
+-- Consulta con Subconsulta
+-- Mostrar la lista de los empleados cuyo salario es mayor o igual que el promedio de la empresa. Ordenarlo por departamento
+Select * from empleado where salario >= (select avg(salario) from empleado) order by id_depto;
+select round(avg (salario),0) from empleado;
+
+
+
+
+
