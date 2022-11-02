@@ -1,4 +1,6 @@
 use tienda;
+select * from producto;
+select * from fabricante,producto;
 
 -- Abrir el script de la base de datos llamada “tienda.sql” y ejecutarlo para crear sus tablas e
 -- insertar datos en las mismas. A continuación, generar el modelo de entidad relación. Deberá
@@ -62,22 +64,24 @@ select * from producto join fabricante on producto.codigo_fabricante=fabricante.
 select * from producto join fabricante on producto.codigo_fabricante=fabricante.codigo where fabricante.nombre in('Asus','Hewlett-Packard');
 
 -- 7. Devuelve un listado con el nombre de producto, precio y nombre de fabricante, 
--- de todoslos productos que tengan un precio mayor o igual a $180. 
+-- de todos los productos que tengan un precio mayor o igual a $180. 
 -- Ordene el resultado en primerlugar por el precio (en orden descendente) y 
--- en segundo lugar por el nombre (en ordenascendente)
+-- en segundo lugar por el nombre (en orden ascendente)
 
-
+select producto.nombre,producto.precio,fabricante.nombre as 'Nombre Empresa' from producto join fabricante where producto.precio order by precio >=180 desc;
+select producto.nombre,producto.precio,fabricante.nombre as 'Nombre Empresa' from producto join fabricante where producto.precio order by nombre asc;
 
 
 -- Consultas Multitabla
 
 -- Resuelva todas las consultas utilizando las cláusulas LEFT JOIN y RIGHT JOIN.
 
--- 1. Devuelve un listado de todos los fabricantes que existen en la base de datos, junto con losproductos que tiene cada uno de ellos.
--- El listado deberá mostrar también aquellosfabricantes que no tienen productos asociados.
 
+-- 1. Devuelve un listado de todos los fabricantes que existen en la base de datos, junto con los productos que tiene cada uno de ellos.
+-- El listado deberá mostrar también aquellos fabricantes que no tienen productos asociados.
+select producto.nombre,producto.precio,fabricante.nombre from producto join fabricante where producto.precio order by fabricante.nombre asc;
 -- 2. Devuelve un listado donde sólo aparezcan aquellos fabricantes que no tienen ningúnproducto asociado.
-
+select producto.nombre,fabricante.nombre from producto left join fabricante on producto.codigo_fabricante=fabricante.codigo;
 -- Subconsultas (En la cláusula WHERE)Con operadores básicos de comparación
 
 -- 1. Devuelve todos los productos del fabricante Lenovo. (Sin utilizar INNER JOIN).
