@@ -9,37 +9,24 @@ Muestre la suma total del peso de los jugadores, donde la conferencia sea Este y
 centro o esté comprendida en otras posiciones.
 */
 
-select * from estadistica;
 select * from estadistica where (select(max(asistencias_por_partido)));
-select * from jugador;
 select jugador, asistencias_por_partido  from estadistica where asistencias_por_partido>=34;
-
-SELECT COUNT(asistencias_por_partido)
-FROM estadistica
-WHERE Asistencias_por_partido = (SELECT MAX(Asistencias_por_partido)
-                                FROM estadistica);
+-- Da La posicion
+SELECT COUNT(asistencias_por_partido) FROM estadistica WHERE Asistencias_por_partido = (SELECT MAX(Asistencias_por_partido) FROM estadistica);
 
 select count(asistencias_por_partido) from estadistica where jugador = 300;
-
-
-
 select * from jugador;
+-- Da la clave
 select sum(j.peso) from jugador j inner join equipo e on j.nombre_equipo=e.nombre 
 where e.conferencia='EAST' and j.posicion like '%C%';
-
 select count(*) from jugador j inner join equipo e on j.nombre_equipo=e.nombre 
 where j.posicion like '%C%';
-
 select sum(peso) from jugador;
 
 -- Candado A, posicion 2 ;
--- 14043  clave ;
-
-
-
+-- Clave 14043 
+---------------------------------------------------------------------------------------------------
 /*
-
-
 CANDADO B
 Posición: El candado B está ubicado en la posición calculada a partir del número obtenido en la/s
 siguiente/s consulta/s:
@@ -49,18 +36,18 @@ Clave: La clave del candado B estará con formada por la/s siguientes consulta/s
 datos:
 La clave será igual al conteo de partidos jugados durante las temporadas del año 1999.
 */
+-- Da la posicion
 select * from jugador;
 select count(nombre_equipo) from jugador where nombre_equipo='Heat';
 select count(asistencias_por_partido) from estadistica where Asistencias_por_partido >(select 
 count(nombre_equipo) from jugador where nombre_equipo='Heat');
-
--- Candado B posicion 3
--- 3480 clave 
+ -- Da la clave
 select * from partido;
 select count(*) from partido where temporada like '%99%';
 
-
-
+-- Candado B posicion 3
+-- Clave 3480
+---------------------------------------------------------------------------------------------------
 /*
 CANDADO C
 Posición: El candado C está ubicado en la posición calculada a partir del número obtenido en la/s
@@ -76,17 +63,17 @@ Para obtener el siguiente código deberás redondear hacia abajo el resultado qu
 sumar: el promedio de puntos por partido, el conteo de asistencias por partido, y la suma de
 tapones por partido. Además, este resultado debe ser, donde la división sea central.
 */
-
+-- Da la Posicion
 select count(*)/(select count(nombre) from jugador where peso>=195)+0.9945 as posicion from jugador j inner join equipo e on j.nombre_equipo=e.nombre 
 where e.conferencia='West' and j.procedencia='Michigan';
+-- Da La clave
+SELECT FLOOR(AVG(Puntos_por_partido)+COUNT(Asistencias_por_partido)+SUM(Tapones_por_partido))
+FROM estadistica AS e INNER JOIN jugador AS j ON e.jugador = j.codigo INNER JOIN equipo AS eq 
+ON j.nombre_equipo = eq.nombre WHERE eq.division = 'Central';
 
-
-
--- posicion 1 
-
-
-
-
+-- Candado C posicion 1 
+-- Clave 631 
+---------------------------------------------------------------------------------------------------
 /*
 CANDADO D
 
@@ -101,8 +88,22 @@ datos:
 Para obtener el siguiente código deberás redondear hacia abajo, la suma de puntos por partido
 de todos los jugadores de procedencia argentina.
 */ 
+-- Da La posicion
+SELECT  ROUND(Tapones_por_partido) FROM estadistica AS e INNER JOIN jugador AS j
+ON jugador = codigo WHERE j.nombre = 'Corey Maggette' AND e.temporada = '00/01';
+-- Da la clave
+SELECT FLOOR(SUM(puntos_por_partido)) puntos FROM estadistica AS e INNER JOIN jugador AS j ON jugador = codigo WHERE j.procedencia = 'Argentina';
 
+------------------------------------------------------------------------------------------------
+-- Candado A, posicion 2 ;
+-- Clave 14043 
 
+-- Candado B posicion 3
+-- Clave 3480
 
+-- Candado C posicion 1 
+-- Clave 631 
 
+-- Candado D posicion 4
+-- Clave 191
 
