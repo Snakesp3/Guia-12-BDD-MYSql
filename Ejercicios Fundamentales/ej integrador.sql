@@ -97,15 +97,22 @@ SELECT FLOOR(SUM(puntos_por_partido)) puntos FROM estadistica AS e INNER JOIN ju
 -- Candado D posicion 4
 -- Clave 191
 ------------------------------------------------------------------------------------------------
--- Candado A, posicion 2 ;
--- Clave 14043 
+/**********Llegó el momento de poner a prueba nuestros conocimientos de bases de datos, para ello nos
+                             han propuesto el siguiente desafío:
+       Tenemos que adivinar la clave y posición de una caja fuerte. El cerrojo consta de 4 candados,
+         cada candado tiene de clave, un número que puede ser de más de 1 cifra y una posición que
+puede ir desde 1 a 4. Nosotros tenemos los 4 candados en la mano (Candado A, Candado B, Candado C y Candado D)
+                 debemos averiguar la posición de cada candado y la clave del mismo.***********/
 
--- Candado B posicion 3
--- Clave 3480
+                                      -- Candado A, posicion 2 --
+                                           -- Clave 14043 -- 
 
--- Candado C posicion 1 
--- Clave 631 
+									   -- Candado B posicion 3 --
+										   -- Clave 3480 --
 
--- Candado D posicion 4
--- Clave 191
+                                       -- Candado C posicion 1 --  
+                                            -- Clave 631 --
+
+									   -- Candado D posicion 4 --
+                                            -- Clave 191 --
 
